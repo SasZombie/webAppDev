@@ -25,7 +25,7 @@
 .centerBox{
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 10vh;
 }
 
 .inputStyle{
