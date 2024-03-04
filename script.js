@@ -175,6 +175,7 @@ function checkTelephone()
     error2.style.display = 'none';
 
     const error = document.getElementById('invalidChars');
+
     if(value.length > 10)
     {
         if(value.charAt(0) !== '+' || value.length > 14)
@@ -189,7 +190,7 @@ function checkTelephone()
         {
             for(let i = 1; i < value.length; ++i)
             {
-                if(!Number.isNaN(value.charAt(0)))
+                if(isNaN(value.charAt(i)))
                 {
                     const error = document.getElementById('invalidChars');
 
@@ -207,7 +208,7 @@ function checkTelephone()
         
         for(let i = 0; i < value.length; ++i)
         {
-            if(!Number.isNaN(value.charAt(0)))
+            if(isNaN(value.charAt(i)))
             {
 
                 error.style.display = 'block';
