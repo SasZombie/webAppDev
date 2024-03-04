@@ -1,3 +1,6 @@
+let a = []
+const fieldSize = 6
+
 function checkName()
 {
     const form = document.querySelector('form');
@@ -8,15 +11,15 @@ function checkName()
 
     if(!value.trim())
     {
-
         error.style.display = 'block';
-
+        
+        a[0] = 0; 
         return false;
     }
     else
     {
         error.style.display = 'none'
-
+        a[0] = 1;
         return true;
     }
 }
@@ -33,12 +36,14 @@ function checkUserName()
     {
 
         error.style.display = 'block';
+        a[1] = 0; 
 
         return false;
     }
     else
     {
         error.style.display = 'none'
+        a[1] = 1; 
 
         return true;
     }
@@ -62,6 +67,7 @@ function checkPasswordsMatch()
     {
 
         error.style.display = 'block';
+        a[2] = 0; 
 
         return false;
     }
@@ -72,11 +78,13 @@ function checkPasswordsMatch()
     {
 
         error2.style.display = 'block';
+        a[2] = 0; 
 
         return false;
     }
     
     error2.style.display = 'none';
+    a[2] = 1; 
 
     return true;
 
@@ -94,6 +102,7 @@ function checkEmail()
     {
 
         error.style.display = 'block';
+        a[3] = 0; 
 
         return false;
     }
@@ -109,11 +118,15 @@ function checkEmail()
     {
 
         error2.style.display = 'block';
+        a[3] = 0; 
 
         return false;
     }
 
     error2.style.display = 'none';
+    a[3] = 1; 
+
+    return true;
 }
 
 function checkGender()
@@ -131,11 +144,15 @@ function checkGender()
         const error = document.getElementById('incorectGender');
 
         error.style.display = 'block';
+        a[4] = 0; 
 
         return false;
     }
 
     error.style.display = 'none';
+    a[4] = 1; 
+
+    return true;
 }
 
 function checkTelephone()
@@ -150,6 +167,7 @@ function checkTelephone()
     {
 
         error2.style.display = 'block';
+        a[5] = 0; 
 
         return false;
     }
@@ -163,6 +181,7 @@ function checkTelephone()
         {
 
             error.style.display = 'block';
+            a[5] = 0; 
 
             return false;
         }
@@ -175,7 +194,8 @@ function checkTelephone()
                     const error = document.getElementById('invalidChars');
 
                     error.style.display = 'block';
-        
+                    a[5] = 0; 
+
                     return false;
                 }
             }
@@ -191,20 +211,29 @@ function checkTelephone()
             {
 
                 error.style.display = 'block';
-    
+                a[5] = 0; 
+
                 return false;
             }
         }
 
     }
     
-    
+    a[5] = 1; 
+
     error.style.display = 'none';
+
+    return true;
 }
 
 function validate()
 {
 
-    return true;
+    for(let i = 0; i < fieldSize; ++i)
+    {
+        if(a[i] == 0)
+            return false;
+    }   
 
+    return true;
 }
