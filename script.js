@@ -186,6 +186,8 @@ function checkTelephone()
 
     const error = document.getElementById('invalidChars');
 
+    var pattern = /([A-Za-z]\w+@)\w+\.\w*/;
+
     if(value.length > 10)
     {
         if(value.charAt(0) !== '+' || value.length > 14)
