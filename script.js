@@ -1,6 +1,12 @@
 let a = []
 const fieldSize = 6
 
+function isRadioChecked(radioId) {
+    var radio = document.getElementById(radioId);
+    return radio.checked;
+}
+
+
 function checkName()
 {
     const form = document.querySelector('form');
@@ -14,13 +20,13 @@ function checkName()
         error.style.display = 'block';
         
         a[0] = 0; 
-        return false;
+       
     }
     else
     {
         error.style.display = 'none'
         a[0] = 1;
-        return true;
+       
     }
 }
 
@@ -38,14 +44,14 @@ function checkUserName()
         error.style.display = 'block';
         a[1] = 0; 
 
-        return false;
+       
     }
     else
     {
         error.style.display = 'none'
         a[1] = 1; 
 
-        return true;
+       
     }
 }
 
@@ -69,7 +75,8 @@ function checkPasswordsMatch()
         error.style.display = 'block';
         a[2] = 0; 
 
-        return false;
+        return;
+       
     }
 
     error.style.display = 'none';
@@ -80,13 +87,14 @@ function checkPasswordsMatch()
         error2.style.display = 'block';
         a[2] = 0; 
 
-        return false;
+        return;
+       
     }
     
     error2.style.display = 'none';
     a[2] = 1; 
 
-    return true;
+   
 
 }
 
@@ -104,7 +112,7 @@ function checkEmail()
         error.style.display = 'block';
         a[3] = 0; 
 
-        return false;
+       return
     }
 
     error.style.display = 'none';
@@ -120,13 +128,14 @@ function checkEmail()
         error2.style.display = 'block';
         a[3] = 0; 
 
-        return false;
+        return
+       
     }
 
     error2.style.display = 'none';
     a[3] = 1; 
 
-    return true;
+   
 }
 
 function checkGender()
@@ -136,23 +145,24 @@ function checkGender()
     const messageFromText = form.querySelector('#Male');
     const messageFromText2 = form.querySelector('#Female');
 
-    const value = messageFromText.value;
-    const value2 = messageFromText2.value;
+    const value = isRadioChecked(messageFromText.id);
+    const value2 = isRadioChecked(messageFromText2.id);
 
-    if(!value.trim() && !value2.trim())
+    if(!value && !value2)
     {
         const error = document.getElementById('incorectGender');
 
         error.style.display = 'block';
         a[4] = 0; 
 
-        return false;
+        return
     }
+
 
     error.style.display = 'none';
     a[4] = 1; 
 
-    return true;
+   
 }
 
 function checkTelephone()
@@ -169,7 +179,7 @@ function checkTelephone()
         error2.style.display = 'block';
         a[5] = 0; 
 
-        return false;
+       return
     }
 
     error2.style.display = 'none';
@@ -184,7 +194,7 @@ function checkTelephone()
             error.style.display = 'block';
             a[5] = 0; 
 
-            return false;
+           return
         }
         else
         {
@@ -197,7 +207,7 @@ function checkTelephone()
                     error.style.display = 'block';
                     a[5] = 0; 
 
-                    return false;
+                   return
                 }
             }
         }
@@ -214,7 +224,8 @@ function checkTelephone()
                 error.style.display = 'block';
                 a[5] = 0; 
 
-                return false;
+                return
+               
             }
         }
 
@@ -224,17 +235,25 @@ function checkTelephone()
 
     error.style.display = 'none';
 
-    return true;
+   
 }
 
-function validate()
+function validate(event)
 {
+
+    checkEmail();
+    checkGender();
+    checkName();
+    checkPasswordsMatch();
+    checkTelephone();
+    checkUserName();
 
     for(let i = 0; i < fieldSize; ++i)
     {
         if(a[i] == 0)
+        {
+            event.preventDefault();
             return false;
+        }
     }   
-
-    return true;
 }
